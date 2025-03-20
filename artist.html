@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Artists' Introduction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    /* 艺术家列表样式 */
+    .artist {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 600px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .artist:hover {
+      transform: scale(1.02);
+    }
+    .artist img {
+      width: 120px;
+      height: auto;
+      margin-right: 20px;
+      border-radius: 5px;
+    }
+    .artist-name {
+      font-size: 24px;
+      color: #007BFF;
+    }
+    /* 模态框样式 */
+    .modal {
+      display: none; /* 默认隐藏 */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      position: relative;
+      margin: 5% auto;
+      width: 80%;
+      max-width: 800px;
+    }
+    .close {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: #fff;
+      border-radius: 50%;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    iframe {
+      width: 100%;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Artists' Introduction</h1>
+
+  <!-- 艺术家列表 -->
+  <div class="artist" onclick="openModal('video1')">
+    <img src="picasso.jpeg" alt="Pablo Picasso">
+    <div class="artist-name">Pablo Picasso</div>
+  </div>
+
+  <div class="artist" onclick="openModal('video2')">
+    <img src="Leo.avif" alt="Leonardo da Vinci">
+    <div class="artist-name">Leonardo da Vinci</div>
+  </div>
+
+  <div class="artist" onclick="openModal('video3')">
+    <img src="Frida.webp" alt="Frida Kahlo">
+    <div class="artist-name">Frida Kahlo</div>
+  </div>
+
+  <div class="artist" onclick="openModal('video4')">
+    <img src="Banksy.webp" alt="Banksy">
+    <div class="artist-name">Banksy</div>
+  </div>
+
+  <!-- 模态框（弹窗）实现视频展示 -->
+  <div id="video1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('video1')">&times;</span>
+      <iframe src="https://www.youtube.com/embed/3KJZc7o-h2Y?si=MFm9_SfDQevaGE81" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="video2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('video2')">&times;</span>
+      <iframe src="https://www.youtube.com/embed/XjcJG0YQSds?si=TBfjHg_uk-S41-Sr" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="video3" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('video3')">&times;</span>
+      <iframe src="https://www.youtube.com/embed/B9XYtPqWLB4?si=VTwLhJMVAve3evPc" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="video4" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('video4')">&times;</span>
+      <iframe src="https://www.youtube.com/embed/QtgyZ7zueYA?si=eyRq7cIA7pV4lKi3" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    // 打开模态框，显示对应视频
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    // 关闭模态框，并停止视频播放
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.style.display = "none";
+      // 找到iframe并重置src属性，从而停止播放
+      const iframe = modal.querySelector("iframe");
+      const currentSrc = iframe.src;
+      iframe.src = "";
+      iframe.src = currentSrc;
+    }
+  </script>
+</body>
+</html>
+
